@@ -18,8 +18,8 @@ app.use((req, res, next) => {
 });
 
 aws.config.update({
-    accessKeyId:"AKIAUPJTSIUPJL5K5FYU",
-    secretAccessKey: "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",
+    accessKeyId:process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region:"sa-east-1",
 })
 
@@ -36,13 +36,18 @@ const upload = multer({
     })
 })
 
-// const __filename = fileURLToPath(import.meta.url);
-
-// const __dirname = path.dirname(__filename)
 
 // const upload = multer({
 //     dest:'./uploads',
 // })
+
+
+
+// const __filename = fileURLToPath(import.meta.url);
+
+// const __dirname = path.dirname(__filename)
+
+
 // const upload = multer({
 //     storage: multer.diskStorage({
 //         destination:path.resolve(__dirname,'../uploads'),
@@ -56,7 +61,7 @@ const upload = multer({
 
 app.post('/uploads', upload.single("image"), (req,res)=>{
     console.log("imagem recebida")
-    console.log(req.file)
+    // console.log(req.file)
     res.send("Sucesso").status(200);
 })
 
